@@ -6,13 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-        create: (BuildContext context) => ProductProvider()),
-  ], child:  DevicePreview(
-    builder: (BuildContext context) => const MyApp(),
-    enabled: !kReleaseMode,
-  ),));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (BuildContext context) => ProductProvider()),
+    ],
+    child: DevicePreview(
+      builder: (BuildContext context) => const MyApp(),
+      enabled: !kReleaseMode,
+    ),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,10 +25,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const HomeScreen());
   }
-
 }
