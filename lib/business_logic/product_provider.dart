@@ -18,7 +18,7 @@ class ProductProvider with ChangeNotifier {
         final decoded = jsonDecode(productsResponse.body);
         print(decoded);
 
-        List productList = decoded['results'];
+        List productList = decoded;
         for (var element in productList) {
           products.add(Product.fromJson(element));
         }
