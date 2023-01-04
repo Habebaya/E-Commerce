@@ -6,15 +6,25 @@ import 'package:flutter/foundation.dart';
 
 import '../utility/validator.dart';
 
-class PopularPersonProvider with ChangeNotifier {
+class ProductProvider with ChangeNotifier {
   final ProductRepository _productRepository =
       ProductRepository();
 
 
-  Future<void> getAllPopularPerson() async {
+  Future<void> getAllProduct() async {
     try {
-      final popularPersonResponse =
-          await _productRepository.getAllProducts();
+      final productsResponse =
+      await _productRepository.getAllProducts();
+      if (Validators.responseIsValid(productsResponse)) {
+        final decoded = jsonDecode(productsResponse.body);
+        print(decoded);
+
+        List popularPerson = decoded['results'];
+        for (var element in popularPerson) {
+          // popularPersonList.add(PopularPerson.fromJson(element));
+        }
+      }
+
 
     } catch (e) {
       log(e.toString());
