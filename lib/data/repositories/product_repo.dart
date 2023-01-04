@@ -8,7 +8,7 @@ import '../../service/network_service.dart';
 class ProductRepository {
   final NetworkService _networkService = NetworkService();
 
-  Future<Response> getAllPopularPerson(int page) async {
+  Future<Response> getAllProducts() async {
     const url = '${APIConstants.baseUrl}${APIConstants.productPERFIX}';
 
     late Response response;
