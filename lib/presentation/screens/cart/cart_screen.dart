@@ -1,4 +1,5 @@
 import 'package:ecommerce/business_logic/cart_provider.dart';
+import 'package:ecommerce/presentation/screens/checkout/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -84,7 +85,13 @@ class _CartScreenState extends State<CartScreen> {
                           "CheckOut",
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckoutScreen()),
+                          );
+                        },
                       ),
                     )
                   ],
