@@ -35,7 +35,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   const Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Enter your address",
+                      "Enter shipping address",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                     ),
