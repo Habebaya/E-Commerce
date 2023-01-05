@@ -9,7 +9,6 @@ class NetworkService {
     final apiUrl = Uri.parse(apiUrlString);
     http.Response response = await http
         .get(apiUrl, headers: headers);
-    print(response.statusCode);
     return response;
   }
 }

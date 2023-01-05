@@ -12,6 +12,7 @@ class ProductProvider with ChangeNotifier {
   final ProductRepository _productRepository = ProductRepository();
   List<Product> products = [];
   late Product product;
+  List<Product> foundedProduct = [];
 
   Future<void> getAllProduct() async {
     try {
@@ -50,5 +51,14 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
+  void runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+    } else {
+      foundedProduct = products
+          .where((value) =>
+              value.title!.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    notifyListeners();
+  }
 }

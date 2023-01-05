@@ -54,7 +54,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     maxLines: 3,
                     minLines: 2,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -104,7 +104,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                     onPressed: () async {
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          MaterialPageRoute(builder: (context) => const HomeScreen()),
                           (Route<dynamic> route) => false);
                       Provider.of<CartProvider>(context, listen: false)
                           .cartProducts

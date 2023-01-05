@@ -1,6 +1,9 @@
 import 'package:ecommerce/business_logic/settings_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../cart/cart_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -14,7 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings"),
+        title: const Text("Settings"),
         centerTitle: true,
       ),
       body: Column(
@@ -24,23 +27,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Dark Mode",style: TextStyle(
-                  fontSize: 18
-                ),),
+                const Text(
+                  "Dark Mode",
+                  style: TextStyle(fontSize: 18),
+                ),
                 IconButton(
                     onPressed: () {
                       Provider.of<SettingsProvider>(context, listen: false)
                           .changeTheme();
-                      print(Provider.of<SettingsProvider>(context, listen: false)
-                          .themeBool);
                     },
                     icon: Provider.of<SettingsProvider>(context, listen: false)
                             .themeBool
-                        ? Icon(Icons.wb_sunny)
-                        : Icon(Icons.nights_stay))
+                        ? const Icon(Icons.wb_sunny)
+                        : const Icon(Icons.nights_stay))
               ],
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Cart",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
