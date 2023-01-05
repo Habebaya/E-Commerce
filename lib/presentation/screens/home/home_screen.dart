@@ -16,13 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   ProductProvider productProvider = ProductProvider();
   late Future future;
 
-  // List<Product> _foundedProduct = [];
-
   @override
   void initState() {
     super.initState();
     productProvider.foundedProduct = productProvider.products;
-
     productProvider = Provider.of<ProductProvider>(context, listen: false);
     future = productProvider.getAllProduct();
   }

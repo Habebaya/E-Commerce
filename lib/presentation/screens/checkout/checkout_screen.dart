@@ -32,12 +32,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Enter your address",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      "Enter your address",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   const TextField(
                     keyboardType: TextInputType.text,
@@ -79,8 +83,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             child: Text(items),
                           );
                         }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
+
                         onChanged: (String? newValue) {
                           setState(() {
                             paymentMethodValue = newValue!;
@@ -104,7 +107,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ),
                     onPressed: () async {
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => const HomeScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
                           (Route<dynamic> route) => false);
                       Provider.of<CartProvider>(context, listen: false)
                           .cartProducts

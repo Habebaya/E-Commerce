@@ -32,7 +32,7 @@ class ProductItem extends StatelessWidget {
             Hero(
               tag: product.id.toString(),
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.22,
+                height: MediaQuery.of(context).size.height * 0.20,
                 color: Colors.white,
                 child: Image.network(
                   '${product.image}',
