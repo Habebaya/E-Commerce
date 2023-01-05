@@ -1,6 +1,7 @@
 import 'package:ecommerce/business_logic/product_provider.dart';
 import 'package:ecommerce/presentation/screens/cart/cart_screen.dart';
 import 'package:ecommerce/presentation/screens/home/product_item.dart';
+import 'package:ecommerce/presentation/screens/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class HomeScreen extends StatefulWidget {
@@ -26,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text("Products"),
           centerTitle: true,
-          backgroundColor: Colors.black,
           actions: [
             IconButton(onPressed: (){
               Navigator.push(
@@ -34,7 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(
                     builder: (context) => CartScreen()),
               );
-            }, icon: Icon(Icons.shopping_cart))
+            }, icon: Icon(Icons.shopping_cart)),
+            IconButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SettingsScreen()),
+              );
+            }, icon: Icon(Icons.settings))
           ],
         ),
         body: FutureBuilder(

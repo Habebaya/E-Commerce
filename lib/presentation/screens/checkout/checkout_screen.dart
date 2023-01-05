@@ -1,5 +1,7 @@
+import 'package:ecommerce/business_logic/cart_provider.dart';
 import 'package:ecommerce/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutScreen extends StatefulWidget {
   CheckoutScreen({Key? key}) : super(key: key);
@@ -19,7 +21,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       appBar: AppBar(
         title: const Text("Checkout"),
         centerTitle: true,
-        backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: Padding(
@@ -42,29 +43,29 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 2, color: Colors.black45), //<-- SEE HERE
+                          borderSide: BorderSide(width: 2), //<-- SEE HERE
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Colors.black54),
+                          borderSide: BorderSide(width: 2),
                         ),
                         hintText: "address ....",
-                        hintStyle: TextStyle(color: Colors.black38),
                         fillColor: Colors.white),
                     style: TextStyle(fontSize: 18),
                     maxLines: 3,
                     minLines: 2,
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
                         "Payment method",
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700),
                       ),
                       DropdownButton(
-
                         // Initial Value
                         value: paymentMethodValue,
 
@@ -86,36 +87,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           });
                         },
                       ),
-
                     ],
                   ),
                 ],
               ),
-
-
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black),
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                    ),
+                    child: const Text(
+                      "Checkout",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (Route<dynamic> route) => false);
+                      Provider.of<CartProvider>(context, listen: false)
+                          .cartProducts
+                          .clear();
+                    },
+                  ),
                 ),
-                child:const  Text(
-                  "Checkout",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                      HomeScreen()), (Route<dynamic> route) => false);
-
-
-
-                },
               ),
-            ),
-          ),
-
-
             ],
           ),
         ),

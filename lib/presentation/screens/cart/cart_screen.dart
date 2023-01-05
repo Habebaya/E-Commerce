@@ -28,7 +28,6 @@ class _CartScreenState extends State<CartScreen> {
         appBar: AppBar(
           title: const Text("Cart"),
           centerTitle: true,
-          backgroundColor: Colors.black,
         ),
         body: cartProvider.cartProducts.isEmpty
             ? Center(child: Text("Cart is Empty"))

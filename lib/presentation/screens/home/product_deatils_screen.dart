@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../business_logic/product_provider.dart';
+import '../cart/cart_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
@@ -34,9 +35,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: const Text("Product Details"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()),
+                );
+              },
+              icon: const Icon(Icons.shopping_cart))
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,7 +56,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Hero(
                 tag: widget.product.id.toString(),
                 child: Container(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
@@ -71,7 +81,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   style: const TextStyle(
                     height: 1.3,
                     fontSize: 16,
-                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -108,18 +117,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-
                       cartProvider.addToCart(widget.product);
-                      print(cartProvider.cartProducts.length);
-                      print(cartProvider.cartProducts.first.title);
-                      print(cartProvider.cartProducts.last.title);
-
 
                     },
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -130,7 +133,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   style: TextStyle(
                     height: 1.3,
                     fontSize: 16,
-                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.start,
@@ -144,7 +146,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   style: const TextStyle(
                     height: 1.3,
                     fontSize: 16,
-                    color: Colors.black54,
                     fontWeight: FontWeight.w600,
                   ),
                   textAlign: TextAlign.start,
