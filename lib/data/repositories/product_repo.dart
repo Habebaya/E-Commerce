@@ -21,4 +21,18 @@ class ProductRepository {
 
     return response;
   }
+
+  Future<Response> getSingleProduct(int id) async {
+    final url = '${APIConstants.baseUrl}${APIConstants.productPERFIX}/$id}';
+
+    late Response response;
+    try {
+      response = await _networkService.get(url,
+          headers: APIConstants.headerWithoutToken);
+    } catch (e) {
+      log(e.toString());
+    }
+
+    return response;
+  }
 }

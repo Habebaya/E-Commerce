@@ -1,4 +1,5 @@
 import 'package:ecommerce/business_logic/product_provider.dart';
+import 'package:ecommerce/presentation/screens/home/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class HomeScreen extends StatefulWidget {
@@ -35,16 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 return GridView.builder(
                     gridDelegate:
                     const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 300,
-                        crossAxisSpacing: 0.5,
-                        mainAxisSpacing: 1,
+                        maxCrossAxisExtent: 350,
+                        crossAxisSpacing: 1,
+                        mainAxisSpacing: 4,
                         childAspectRatio: 0.8),
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
-                    padding: EdgeInsets.zero,
                     itemCount: Provider.of<ProductProvider>(context).products.length,
                     itemBuilder: (ctx, index) {
-                      return Text(productProvider.products[index].title!);
+                      return ProductItem(product:productProvider.products[index] ,);
                     });
               }
             }));
