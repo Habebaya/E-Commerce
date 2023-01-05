@@ -1,4 +1,5 @@
 import 'package:ecommerce/business_logic/product_provider.dart';
+import 'package:ecommerce/presentation/screens/cart/cart_screen.dart';
 import 'package:ecommerce/presentation/screens/home/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text("Products"),
           centerTitle: true,
           backgroundColor: Colors.black,
+          actions: [
+            IconButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CartScreen()),
+              );
+            }, icon: Icon(Icons.shopping_cart))
+          ],
         ),
         body: FutureBuilder(
             future: future,

@@ -108,7 +108,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      print("Cary");
 
                       cartProvider.addToCart(widget.product);
                       print(cartProvider.cartProducts.length);
@@ -120,9 +119,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
               ),
-              IconButton(onPressed: (){
-                cartProvider.removeFromCart(widget.product);
-              }, icon: Icon(Icons.remove)),
+
               const SizedBox(
                 height: 10,
               ),
