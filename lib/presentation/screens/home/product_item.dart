@@ -14,8 +14,7 @@ class ProductItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  ProductDetailsScreen(product: product)),
+              builder: (context) => ProductDetailsScreen(product: product)),
         );
       },
       child: Container(
@@ -30,26 +29,24 @@ class ProductItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-          Hero(
-                tag: product.id.toString(),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.22,
+            Hero(
+              tag: product.id.toString(),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.22,
+                color: Colors.white,
+                child: Image.network(
+                  '${product.image}',
+                  fit: BoxFit.contain,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
 
-                  color: Colors.white,
-                  child: Image.network(
-                    '${product.image}',
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-
-                      return Center(
-                          child: Image.asset('assets/images/loading.gif'));
-                    },
-                    errorBuilder: (context, error, stackTrace) =>
-                        Image.asset('assets/images/placeholder.jpeg'),
-                  ),
+                    return Center(
+                        child: Image.asset('assets/images/loading.gif'));
+                  },
+                  errorBuilder: (context, error, stackTrace) =>
+                      Image.asset('assets/images/placeholder.jpeg'),
                 ),
-
+              ),
             ),
             Container(
               width: double.infinity,
@@ -69,7 +66,9 @@ class ProductItem extends StatelessWidget {
                     maxLines: 2,
                     textAlign: TextAlign.start,
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     'EGP ${product.price}',
                     style: const TextStyle(
@@ -81,7 +80,8 @@ class ProductItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     textAlign: TextAlign.start,
-                  ),                ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -90,4 +90,3 @@ class ProductItem extends StatelessWidget {
     );
   }
 }
-

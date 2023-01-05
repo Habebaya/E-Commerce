@@ -16,7 +16,7 @@ class Product {
     title = json['title'];
 
     description = json['description'] ?? "";
-    price = json['price'];
+    price = double.parse(json['price'].toString());
     image = json['image'] ?? "";
   }
 }

@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:ecommerce/business_logic/cart_provider.dart';
 import 'package:ecommerce/business_logic/product_provider.dart';
 import 'package:ecommerce/presentation/screens/home/home_screen.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,8 @@ void main() {
     providers: [
       ChangeNotifierProvider(
           create: (BuildContext context) => ProductProvider()),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => CartProvider()),
     ],
     child: DevicePreview(
       builder: (BuildContext context) => const MyApp(),

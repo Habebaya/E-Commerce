@@ -1,3 +1,4 @@
+import 'package:ecommerce/business_logic/cart_provider.dart';
 import 'package:ecommerce/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,12 +17,16 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   ProductProvider productProvider = ProductProvider();
+  CartProvider cartProvider = CartProvider();
   late Future future;
+  List<Product> addToCart = [];
 
   @override
   void initState() {
     super.initState();
     productProvider = Provider.of<ProductProvider>(context, listen: false);
+    cartProvider = Provider.of<CartProvider>(context, listen: false);
+
     future = productProvider.getSingleProduct(widget.product.id!);
   }
 
@@ -30,7 +35,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-
         title: const Text("Product Details"),
         centerTitle: true,
       ),
@@ -89,7 +93,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                     textAlign: TextAlign.center,
-
                   ),
                 ),
               ),
@@ -97,7 +100,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.97,
                   child: ElevatedButton(
-
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                     ),
@@ -105,29 +107,41 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       "Add To Cart",
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () async {},
+                    onPressed: () async {
+                      print("Cary");
+
+                      cartProvider.addToCart(widget.product);
+                      print(cartProvider.cartProducts.length);
+                      print(cartProvider.cartProducts.first.title);
+                      print(cartProvider.cartProducts.last.title);
+
+
+                    },
                   ),
                 ),
               ),
-             SizedBox(height: 10,),
-             const Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 1),
-                  child: Text(
-                    "Description",
-                    style: TextStyle(
-                      height: 1.3,
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-
-                    ),
-                    textAlign: TextAlign.start,
-
+              IconButton(onPressed: (){
+                cartProvider.removeFromCart(widget.product);
+              }, icon: Icon(Icons.remove)),
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 1),
+                child: Text(
+                  "Description",
+                  style: TextStyle(
+                    height: 1.3,
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.start,
                 ),
-
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 1),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1),
                 child: Text(
                   '${widget.product.description}',
                   style: const TextStyle(
@@ -135,15 +149,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     fontSize: 16,
                     color: Colors.black54,
                     fontWeight: FontWeight.w600,
-
                   ),
                   textAlign: TextAlign.start,
-
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03,)
-
-
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              )
             ],
           ),
         ),
